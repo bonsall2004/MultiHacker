@@ -21,16 +21,12 @@ namespace Wifi::SSID_Scanner
         SSID_Menu->AddMenuItem( new MenuItem((LCD::AutoEllipsis((String)WiFi.SSID(i), 1)), new SSID_SubMenu((String)WiFi.SSID(i), i, CurrentMenu)));
       }
     }
-    
-
     SSID_Menu->Draw();
   }
   void test() {
     return;
   };
 };
-
-
 
 uint8_t SSID_SubMenu::GetSSID() const {
   return this->SSID_ID;
