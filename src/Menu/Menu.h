@@ -10,7 +10,7 @@
 #define TEXTCOLOR 65528
 #define TEXTCOLORSELECTED 0x2126
 // Header Size
-#define MIN_HEADER_BOX_HEIGHT 24
+#define MIN_HEADER_BOX_HEIGHT 18
 // Item Sizes
 #define MENU_ITEM_SIZE 16
 #define ITEMS_TO_DISPLAY Math::FloorTen(LCD::display.height() - MIN_HEADER_BOX_HEIGHT) / MENU_ITEM_SIZE
