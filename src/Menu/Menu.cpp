@@ -19,12 +19,12 @@ void Menu::DrawMenuItems()
   if((startIndex + ITEMS_TO_DISPLAY) != endIndex) {
     LCD::display.fillRect(0, HEADER_BOX_HEIGHT, LCD::display.width(), LCD::display.height(), ITEMBACKGROUND);
   }
-  Serial.println("startIndex");
-  Serial.println(startIndex);
-  Serial.println("endIndex");
-  Serial.println(endIndex);
-  Serial.println("size");
-  Serial.println(MenuItems.size());
+  
+  
+  
+  
+  
+  
   
   uint8_t positionIndex = 0;
 
@@ -91,6 +91,7 @@ void Menu::Back()
 }
 
 void Menu::RunSelected() {
+  ExtraCodeToRun();
   switch (this->MenuItems[this->SelectedItem]->GetItemType())
   {
   case MenuItemType::E_SubMenu:

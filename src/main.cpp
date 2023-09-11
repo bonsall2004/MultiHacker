@@ -31,7 +31,6 @@ void setup() {
 
   LCD::display.initR(0);
   LCD::display.fillRect(0, 0, LCD::display.width(), LCD::display.height(), ITEMBACKGROUND);
-  LCD::display.setRotation(1);
   MainMenu = new Menu("General");
   MainMenu->AddMenuItem(new MenuItem("Wifi", Wifi::CreateMenu, MenuItemType::E_MenuApplication));
   for(int i = 0; i < (100); i++) {
@@ -57,8 +56,6 @@ void loop() {
     CurrentMenu->RunSelected();
   }
 }
-
-
 
 bool Debounce(int pin) {
   uint8_t ButtonPressed = digitalRead(pin);

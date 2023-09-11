@@ -61,6 +61,9 @@ class Menu
     void SetSelectedItem(uint8_t ID);
     void Back();
     void RunSelected();
+    virtual void ExtraCodeToRun() {
+      return;
+    };
     void SetPreviousMenu(Menu* PrevMenu);
 };
 

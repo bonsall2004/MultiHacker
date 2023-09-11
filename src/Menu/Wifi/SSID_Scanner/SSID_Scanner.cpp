@@ -1,10 +1,12 @@
 #include "./SSID_Scanner.h"
 #include "WiFi.h"
 #include "../../../LCD/LCD.h"
-
 namespace Wifi::SSID_Scanner 
 {
+
+  uint8_t SelectedSSID;
   Menu* SSID_Menu = new Menu("Networks");
+
   void CreateMenu() {
     SSID_Menu->ClearMenuItems();
     SSID_Menu->SetPreviousMenu(CurrentMenu);
@@ -22,12 +24,25 @@ namespace Wifi::SSID_Scanner
       }
     }
     SSID_Menu->Draw();
-  }
-  void test() {
+  };
+
+  void SelectSSID(uint8_t ID) {
+    Wifi::SSID_Scanner::SelectedSSID = ID;
     return;
   };
+
+  void test() {
+    Serial.print(WiFi.SSID(Wifi::SSID_Scanner::SelectedSSID));
+    return;
+  };
+
 };
 
 uint8_t SSID_SubMenu::GetSSID() const {
   return this->SSID_ID;
-}
+};
+
+void SSID_SubMenu::ExtraCodeToRun() {
+  Wifi::SSID_Scanner::SelectSSID(this->SSID_ID);
+  return;
+};
