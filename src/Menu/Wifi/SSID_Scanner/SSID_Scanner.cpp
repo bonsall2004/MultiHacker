@@ -1,6 +1,7 @@
 #include "./SSID_Scanner.h"
 #include "WiFi.h"
 #include "../../../LCD/LCD.h"
+#include "../AP_Flooder/AP_Flooder.h"
 namespace Wifi::SSID_Scanner 
 {
 
@@ -26,6 +27,11 @@ namespace Wifi::SSID_Scanner
     SSID_Menu->Draw();
   };
 
+  void Clone() {
+    Wifi::AP_Flooder::CreateAP(1, WiFi.SSID(Wifi::SSID_Scanner::SelectedSSID));
+    return;
+  }
+
   void SelectSSID(uint8_t ID) {
     Wifi::SSID_Scanner::SelectedSSID = ID;
     return;
@@ -35,7 +41,6 @@ namespace Wifi::SSID_Scanner
     Serial.print(WiFi.SSID(Wifi::SSID_Scanner::SelectedSSID));
     return;
   };
-
 };
 
 uint8_t SSID_SubMenu::GetSSID() const {

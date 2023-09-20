@@ -20,12 +20,6 @@ void Menu::DrawMenuItems()
     LCD::display.fillRect(0, HEADER_BOX_HEIGHT, LCD::display.width(), LCD::display.height(), ITEMBACKGROUND);
   }
   
-  
-  
-  
-  
-  
-  
   uint8_t positionIndex = 0;
 
   for (uint8_t i = startIndex; i < endIndex; i++) 
@@ -42,10 +36,10 @@ Menu::~Menu() {
 
 void Menu::Draw() 
 {
+  CurrentMenu->SetSelectedItem(0);
+  CurrentMenu = this;
   this->DrawHeader();
   this->DrawMenuItems();
-  CurrentMenu = this;
-  CurrentMenu->SetSelectedItem(0);
 };
 
 LinkedList<MenuItem*> Menu::GetMenuItems() const 
@@ -143,8 +137,10 @@ MenuItemType MenuItem::GetItemType() const
 void MenuItem::Draw(uint8_t Position) {
   uint16_t TextColour = this->ID == CurrentMenu->GetSelectedItem() ? TEXTCOLORSELECTED : TEXTCOLOR;
   uint16_t BackgroundColour = this->ID == CurrentMenu->GetSelectedItem() ? SELECTEDITEMBACKGROUND : ITEMBACKGROUND;
+
   LCD::display.fillRect(0, (HEADER_BOX_HEIGHT + ((Position-1) *MENU_ITEM_SIZE)), LCD::display.width(), MENU_ITEM_SIZE, BackgroundColour);
   LCD::PrintlnTextXCenter(this->GetItemName(), LCD::GetTextYCenter(MENU_ITEM_SIZE) + HEADER_BOX_HEIGHT + ((Position-1) *MENU_ITEM_SIZE), 1, TextColour);
+  
   switch (this->ItemType)
   {
   case (MenuItemType::E_Application):
@@ -162,14 +158,3 @@ void MenuItem::SetItemID(uint8_t ID) {
 uint8_t MenuItem::GetItemID() const {
   return this->ID;
 }
-
-
-
-
-
-
-
-
-
-
-
